@@ -1,262 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>HAG IS A BAND | Official Site</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Band Landing Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Basic bold, modern styling for now -->
-    <style>
-        :root {
-            --bg: #050608;
-            --accent: #ff3366;
-            --accent-soft: #ff99b5;
-            --text-main: #f5f5f5;
-            --text-muted: #999;
-        }
+  <style>
+    :root {
+      --yellow: #ffd319;
+      --yellow-dark: #f0c200;
+      --text-main: #111111;
+      --text-muted: #444444;
+      --border-subtle: rgba(0, 0, 0, 0.12);
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.35);
+      --radius-card: 16px;
+    }
 
-        * {
-            box-sizing: border-box;
-        }
+    * {
+      box-sizing: border-box;
+    }
 
-        body {
-            margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top left, #111 0, #050608 45%, #000 100%);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
 
-        header {
-            padding: 1.5rem 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
 
-        .logo {
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            font-weight: 700;
-            font-size: 1rem;
-        }
+    /* Full-screen background image */
+    .page {
+      position: relative;
+      min-height: 100vh;
+      background-image: url("your-background-image.jpg"); /* <- replace with your image */
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 24px;
+    }
 
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            margin-left: 1.5rem;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-        }
+    /* Slight dark overlay to improve contrast */
+    .page::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.35), transparent 45%);
+      pointer-events: none;
+    }
 
-        nav a:hover {
-            color: var(--accent-soft);
-        }
+    /* Yellow card on the left */
+    .card {
+      position: relative;
+      z-index: 1;
+      max-width: 520px;
+      width: 100%;
+      background: var(--yellow);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-soft);
+      padding: 28px 32px 20px;
+      display: flex;
+      flex-direction: column;
+    }
 
-        .hero {
-            flex: 1;
-            display: grid;
-            grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
-            align-items: center;
-            gap: 3rem;
-            padding: 2rem 3rem 3rem;
-        }
+    .card-title {
+      font-size: clamp(2.8rem, 6vw, 4.4rem);
+      line-height: 0.9;
+      font-weight: 800;
+      margin: 0 0 18px;
+    }
 
-        .hero-text h1 {
-            font-size: clamp(2.8rem, 5vw, 4rem);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 1rem;
-        }
+    /* Event list */
+    .event-list {
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255, 211, 25, 0.9);
+    }
 
-        .hero-text p {
-            max-width: 30rem;
-            line-height: 1.6;
-            color: var(--text-muted);
-        }
+    .event {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) auto;
+      column-gap: 20px;
+      padding: 14px 4px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.9rem;
+    }
 
-        .hero-buttons {
-            margin-top: 2rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
+    .event:first-child {
+      border-top: none;
+    }
 
-        .btn-primary,
-        .btn-ghost {
-            border: 1px solid var(--accent);
-            padding: 0.8rem 1.6rem;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.14em;
-            background: transparent;
-            color: var(--text-main);
-            cursor: pointer;
-        }
+    .event-date {
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 4px;
+    }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent), var(--accent-soft));
-            border: none;
-            color: #050608;
-            font-weight: 600;
-        }
+    .event-desc-main {
+      font-size: 0.88rem;
+      margin-bottom: 2px;
+    }
 
-        .btn-primary:hover {
-            filter: brightness(1.05);
-        }
+    .event-desc-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
 
-        .btn-ghost:hover {
-            background: rgba(255, 51, 102, 0.1);
-        }
+    .event-label {
+      align-self: center;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
 
-        .tagline {
-            margin-top: 1rem;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--text-muted);
-        }
+    /* Bottom buttons */
+    .card-footer {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
 
-        .hero-visual {
-            border-radius: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 1.5rem;
-            background: radial-gradient(circle at top, rgba(255, 51, 102, 0.2), transparent 60%);
-            position: relative;
-            overflow: hidden;
-        }
+    .card-button {
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: transparent;
+      padding: 10px 16px;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.1s ease;
+    }
 
-        .hero-visual::before {
-            content: "";
-            position: absolute;
-            inset: -40%;
-            background:
-                radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.05), transparent 55%),
-                radial-gradient(circle at 100% 100%, rgba(255, 51, 102, 0.25), transparent 55%);
-            mix-blend-mode: screen;
-            opacity: 0.7;
-        }
+    .card-button:hover {
+      background: var(--yellow-dark);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      transform: translateY(-1px);
+    }
 
-        .hero-card {
-            position: relative;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
+    /* Right vertical pill bar for social links */
+    .right-bar {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+      background: var(--yellow);
+      border-radius: 999px;
+      padding: 16px 10px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
 
-        .hero-card h2 {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--text-muted);
-            margin-bottom: 0.6rem;
-        }
+    .icon-pill {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
 
-        .hero-card p {
-            font-size: 0.9rem;
-            color: var(--accent-soft);
-        }
+    .icon-pill span {
+      pointer-events: none;
+    }
 
-        .hero-meta {
-            margin-top: 1.5rem;
-            display: flex;
-            gap: 1.5rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: var(--text-muted);
-        }
+    /* Small label dots at bottom of right bar (optional) */
+    .icon-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--text-main);
+      opacity: 0.6;
+    }
 
-        .dot {
-            height: 0.4rem;
-            width: 0.4rem;
-            border-radius: 999px;
-            background: var(--accent);
-            display: inline-block;
-            margin-right: 0.4rem;
-        }
+    /* Responsive tweaks */
+    @media (max-width: 900px) {
+      .page {
+        align-items: flex-start;
+        justify-content: center;
+        padding: 16px;
+      }
 
-        footer {
-            padding: 1rem 3rem 1.5rem;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-        }
+      .right-bar {
+        right: 12px;
+      }
 
-        @media (max-width: 800px) {
-            header {
-                padding: 1rem 1.5rem;
-            }
+      .card {
+        padding: 20px 18px 16px;
+      }
 
-            .hero {
-                padding: 1.5rem;
-                grid-template-columns: 1fr;
-            }
+      .event {
+        grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+        row-gap: 4px;
+      }
 
-            .hero-visual {
-                order: -1;
-            }
+      .event-label {
+        grid-column: 1 / -1;
+        text-align: right;
+        padding-top: 4px;
+      }
+    }
 
-            footer {
-                padding: 1rem 1.5rem 1.5rem;
-            }
-        }
-    </style>
+    @media (max-width: 600px) {
+      .page {
+        padding: 12px;
+      }
+
+      .right-bar {
+        top: auto;
+        bottom: 16px;
+        transform: none;
+        flex-direction: row;
+        border-radius: 999px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="logo">HAG</div>
-        <nav>
-            <a href="#">Music</a>
-            <a href="#">Live</a>
-            <a href="#">Watch</a>
-            <a href="#">Contact</a>
-        </nav>
-    </header>
+  <div class="page">
+    <!-- Yellow content card -->
+    <div class="card">
+      <h1 class="card-title">Untitled-1</h1>
 
-    <main class="hero">
-        <section class="hero-text">
-            <h1>There are tides<br>within the body...</h1>
-            <p>
-                HAG is a [genre / vibe] band from [location], blending heavy bass,
-                cinematic textures, and raw vocals into something built for dark rooms and bright lights.
-            </p>
-            <div class="hero-buttons">
-                <button class="btn-primary">Listen to the latest single</button>
-                <button class="btn-ghost">Join the mailing list</button>
-            </div>
-            <div class="tagline">
-                Upcoming shows • New EP dropping 2026 • Limited vinyl run
-            </div>
-        </section>
+      <div class="event-list">
+        <!-- EVENT 1 -->
+        <div class="event">
+          <div>
+            <div class="event-date">Mar. 15, 2026</div>
+            <div class="event-desc-main">Lorem ipsum dolor sit, amet consec</div>
+            <div class="event-desc-sub">Elusmod Tempor, 2025</div>
+          </div>
+          <div>
+            <!-- Extra description field if you want more copy -->
+          </div>
+          <div class="event-label">Lorem 01</div>
+        </div>
 
-        <aside class="hero-visual">
-            <div class="hero-card">
-                <h2>Next Live Date</h2>
-                <p>
-                    15 March · The Deaf Institute · Manchester<br>
-                    Doors 7:30 PM · On stage 9 PM
-                </p>
-                <div class="hero-meta">
-                    <span><span class="dot"></span>Tickets on sale</span>
-                    <span>Support: TBA</span>
-                </div>
-            </div>
-        </aside>
-    </main>
+        <!-- EVENT 2 -->
+        <div class="event">
+          <div>
+            <div class="event-date">Mar. 22, 2026</div>
+            <div class="event-desc-main">Nullam varius, turpis et scelerisque</div>
+            <div class="event-desc-sub">Placeholder Venue, 2025</div>
+          </div>
+          <div></div>
+          <div class="event-label">Lorem 02</div>
+        </div>
 
-    <footer>
-        <span>© 2025 HAG</span>
-        <span>Instagram · Bandcamp · Spotify</span>
-    </footer>
+        <!-- EVENT 3 -->
+        <div class="event">
+          <div>
+            <div class="event-date">Mar. 23, 2026</div>
+            <div class="event-desc-main">Fusce id dui, sit amet tellus</div>
+            <div class="event-desc-sub">City Name, 2025</div>
+          </div>
+          <div></div>
+          <div class="event-label">Lorem 03</div>
+        </div>
+
+        <!-- EVENT 4 -->
+        <div class="event">
+          <div>
+            <div class="event-date">Aug. 3, 2026</div>
+            <div class="event-desc-main">Tristique neque consequat, es sapien</div>
+            <div class="event-desc-sub">Varius Nunc, 2025</div>
+          </div>
+          <div></div>
+          <div class="event-label">Lorem 04</div>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="card-footer">
+        <button class="card-button">Shop</button>
+        <button class="card-button">IG</button>
+      </div>
+    </div>
+
+    <!-- Right vertical icon bar -->
+    <div class="right-bar">
+      <!-- Replace letters with icons or SVGs later -->
+      <div class="icon-pill"><span>Y</span></div> <!-- e.g. YouTube -->
+      <div class="icon-pill"><span>S</span></div> <!-- e.g. Spotify -->
+      <div class="icon-pill"><span>A</span></div> <!-- e.g. Apple -->
+      <div class="icon-dot"></div>
+    </div>
+  </div>
 </body>
 </html>
-
