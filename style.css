@@ -35,11 +35,16 @@ body {
   text-align: center;
 }
 
-/* Heading at the top */
 .event-title {
-  margin: 0 0 24px;
-  font-size: clamp(2.1rem, 4vw, 3rem);
-  font-weight: 700;
+  margin: 0 0 55px;   /* this controls spacing ABOVE the flyer */
+}
+
+/* Heading at the top */
+.event-title img {
+  display: block;
+  margin: 0 auto;
+  max-width: 80%;   /* adjust if you want it bigger/smaller */
+  height: auto;
 }
 
 /* Image block */
