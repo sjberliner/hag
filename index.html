@@ -1,13 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Untitled-1</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <title>HAG IS A BAND | Official Site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Basic bold, modern styling for now -->
+    <style>
+        :root {
+            --bg: #050608;
+            --accent: #ff3366;
+            --accent-soft: #ff99b5;
+            --text-main: #f5f5f5;
+            --text-muted: #999;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top left, #111 0, #050608 45%, #000 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 1.5rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        nav a:hover {
+            color: var(--accent-soft);
+        }
+
+        .hero {
+            flex: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+            align-items: center;
+            gap: 3rem;
+            padding: 2rem 3rem 3rem;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.8rem, 5vw, 4rem);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text p {
+            max-width: 30rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        .hero-buttons {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .btn-primary,
+        .btn-ghost {
+            border: 1px solid var(--accent);
+            padding: 0.8rem 1.6rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            background: transparent;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+            border: none;
+            color: #050608;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            filter: brightness(1.05);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255, 51, 102, 0.1);
+        }
+
+        .tagline {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+        }
+
+        .hero-visual {
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1.5rem;
+            background: radial-gradient(circle at top, rgba(255, 51, 102, 0.2), transparent 60%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-visual::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background:
+                radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.05), transparent 55%),
+                radial-gradient(circle at 100% 100%, rgba(255, 51, 102, 0.25), transparent 55%);
+            mix-blend-mode: screen;
+            opacity: 0.7;
+        }
+
+        .hero-card {
+            position: relative;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .hero-card h2 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            margin-bottom: 0.6rem;
+        }
+
+        .hero-card p {
+            font-size: 0.9rem;
+            color: var(--accent-soft);
+        }
+
+        .hero-meta {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--text-muted);
+        }
+
+        .dot {
+            height: 0.4rem;
+            width: 0.4rem;
+            border-radius: 999px;
+            background: var(--accent);
+            display: inline-block;
+            margin-right: 0.4rem;
+        }
+
+        footer {
+            padding: 1rem 3rem 1.5rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        @media (max-width: 800px) {
+            header {
+                padding: 1rem 1.5rem;
+            }
+
+            .hero {
+                padding: 1.5rem;
+                grid-template-columns: 1fr;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            footer {
+                padding: 1rem 1.5rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">HAG</div>
+        <nav>
+            <a href="#">Music</a>
+            <a href="#">Live</a>
+            <a href="#">Watch</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <main class="hero">
+        <section class="hero-text">
+            <h1>There are tides<br>within the body...</h1>
+            <p>
+                HAG is a [genre / vibe] band from [location], blending heavy bass,
+                cinematic textures, and raw vocals into something built for dark rooms and bright lights.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn-primary">Listen to the latest single</button>
+                <button class="btn-ghost">Join the mailing list</button>
+            </div>
+            <div class="tagline">
+                Upcoming shows • New EP dropping 2026 • Limited vinyl run
+            </div>
+        </section>
+
+        <aside class="hero-visual">
+            <div class="hero-card">
+                <h2>Next Live Date</h2>
+                <p>
+                    15 March · The Deaf Institute · Manchester<br>
+                    Doors 7:30 PM · On stage 9 PM
+                </p>
+                <div class="hero-meta">
+                    <span><span class="dot"></span>Tickets on sale</span>
+                    <span>Support: TBA</span>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer>
+        <span>© 2025 HAG</span>
+        <span>Instagram · Bandcamp · Spotify</span>
+    </footer>
+</body>
 </html>
+
