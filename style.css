@@ -26,6 +26,7 @@ body {
   justify-content: center;
   position: relative;
   padding: 40px 20px;
+  padding-bottom: 420px; /* extra space so side text can continue as you scroll */
 }
 
 /* Center column */
@@ -91,8 +92,8 @@ body {
 
 /* Diagonal labels on each side */
 .side-label {
-  position: absolute;
-  top: 50%;
+  position: fixed;
+  top: 300px;                  /* distance from top of screen */
   font-size: 1.2rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -112,6 +113,31 @@ body {
   transform: translateY(-50%) rotate(18deg);
 }
 
+/* Vertical side text boxes (invisible containers, visible text) */
+.side-text {
+  position: fixed;
+  top: 360px;                           /* just below the label */
+  width: 180px;
+  height: calc(100vh - 60px);          /* full column height */
+  overflow-y: auto;                    /* scrollable */
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-transform: lowercase;
+  color: #111111;
+  padding-right: 4px;                  /* prevents text clipping */
+}
+
+
+.side-text-left {
+  left: 4%;
+  text-align: left;
+}
+
+.side-text-right {
+  right: 4%;
+  text-align: left;
+}
+
 /* Responsive tweaks */
 @media (max-width: 900px) {
   .side-label-left {
@@ -121,15 +147,24 @@ body {
   .side-label-right {
     right: 2%;
   }
+
+  .side-text-left {
+    left: 2%;
+  }
+
+  .side-text-right {
+    right: 2%;
+  }
 }
 
 @media (max-width: 700px) {
-  /* On small screens the diagonals can get cramped, so hide them */
-  .side-label {
+  /* On small screens the diagonals and columns can get cramped, so hide them */
+  .side-label,
+  .side-text {
     display: none;
   }
 
   .page {
-    padding: 32px 16px;
+    padding: 32px 16px 40px;
   }
 }
