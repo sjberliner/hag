@@ -20,6 +20,7 @@ indent_mode=2
 [project]
 name=hag
 base_path=C:\\Users\\user\\Desktop\\EVERYTHING\\HAG\\hag site code\\hag
+description=
 
 [long line marker]
 long_line_behaviour=1
@@ -27,4 +28,4 @@ long_line_column=72
 
 [files]
 current_page=0
-FILE_NAME_0=6179;HTML;0;EUTF-8;1;1;1;C%3A%5CUsers%5Cuser%5CDesktop%5CEVERYTHING%5CHAG%5Chag%20site%20code%5Chag%5Cindex.html;0;4
+FILE_NAME_0=5770;HTML;0;EUTF-8;1;1;0;C%3A%5CUsers%5Cuser%5CDesktop%5CEVERYTHING%5CHAG%5Chag%20site%20code%5Chag%5Cindex.html;0;4
