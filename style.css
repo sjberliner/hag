@@ -53,11 +53,21 @@ body {
   margin-bottom: 16px;
 }
 
+.flyer-image {
+  position: relative;
+  text-align: center;
+}
+
 .flyer-image img {
   display: block;
-  max-width: 100%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;        /* increase this number to make it larger */
+  max-width: none;    /* allows sizes >100% */
   height: auto;
 }
+
 
 /* Tagline beneath image */
 .event-tagline {
@@ -132,7 +142,6 @@ body {
   padding-right: 4px;                  /* prevents text clipping */
 }
 
-
 .side-text-left {
   left: 4%;
   text-align: left;
@@ -173,9 +182,20 @@ body {
     padding: 32px 16px 40px;
   }
 }
+
+.extra-image {
+  position: relative;
+  text-align: center; /* keeps baseline centering */ 
+}
+
 .extra-image img {
   display: block;
-  margin: 20px auto 0;   /* top space + centered */
-  max-width: 80%;        /* adjust as needed */
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%); /* forces perfect centering no matter the width */
+  margin: 100px 0 0;          /* keep your existing spacing */
+  width: 70%;                /* now you can enlarge it safely */
+  max-width: none;            /* unlock sizes >100% */
   height: auto;
 }
+
