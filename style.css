@@ -108,7 +108,7 @@ body {
 /* Diagonal labels on each side */
 .side-label {
   position: fixed;
-  top: 300px;                  /* distance from top of screen */
+  top: 200px;                  /* distance from top of screen */
   font-size: 1.2rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -131,13 +131,13 @@ body {
 /* Vertical side text boxes (invisible containers, visible text) */
 .side-text {
   position: fixed;
-  top: 360px;                           /* just below the label */
+  top: 250px;                           /* just below the label */
   width: 180px;
   height: calc(100vh - 60px);          /* full column height */
   overflow-y: auto;                    /* scrollable */
   font-size: 0.8rem;
   line-height: 1.5;
-  text-transform: lowercase;
+  text-transform: none; 			   /* ← allows uppercase, lowercase, mixed */
   color: #111111;
   padding-right: 4px;                  /* prevents text clipping */
 }
@@ -169,6 +169,7 @@ body {
   .side-text-right {
     right: 2%;
   }
+  
 }
 
 @media (max-width: 700px) {
@@ -194,8 +195,9 @@ body {
   left: 50%;
   transform: translateX(-50%); /* forces perfect centering no matter the width */
   margin: 100px 0 0;          /* keep your existing spacing */
-  width: 70%;                /* now you can enlarge it safely */
+  width: 50%;                /* now you can enlarge it safely */
   max-width: none;            /* unlock sizes >100% */
   height: auto;
+  
 }
 
